@@ -4,8 +4,8 @@ Quick reference for what each control does.
 
 ## At a glance
 
-| Filter | Effect | Speed |
-|---|---|---|
+| Filter | Effect |
+|---|---|
 | Segment length | Loads a whole new base file, HIN recomputes |
 | View (HIN / HRN) | Toggles which layer the map shows |
 | Blur size | HIN recomputes (sliding-window redistribution) |
