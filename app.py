@@ -46,30 +46,33 @@ HIN_THRESHOLDS = {
     'St Joseph County': {'is_ped_fsi':0.401,'is_bike_fsi':0.324,'is_buggy_fsi':0.290,'is_motorcycle_fsi':0.391,'is_vehicle_fsi':1.019},
 }
 
+BASE_URLS = {
+    '010': 'https://github.com/raajparikh24/macog-safety-explorer/releases/download/v1.0/base_seg010.gpkg',
+    '025': 'https://github.com/raajparikh24/macog-safety-explorer/releases/download/v1.0/base_seg025.gpkg',
+    '050': 'https://github.com/raajparikh24/macog-safety-explorer/releases/download/v1.0/base_seg050.gpkg',
+    '100': 'https://github.com/raajparikh24/macog-safety-explorer/releases/download/v1.0/base_seg100.gpkg',
+}
+
 # ----------------------- One-time setup -----------------------
 def _tag(length): return f'{int(round(length*100)):03d}'
 
 def _prepare_data_dir():
-    """Unzip macog_base.zip once and patch/import fpa.py."""
-    if not DATA_DIR.exists():
-        st.error(f'Missing folder: `{DATA_DIR}`. Create it and drop `macog_base.zip` + `fpa.py` inside.')
-        st.stop()
+    """Download base files from Release + patch/import fpa.py."""
+    DATA_DIR.mkdir(exist_ok=True)
     BASE_DIR.mkdir(exist_ok=True)
 
-    # Unzip if base files not already present
-    zip_path = DATA_DIR / 'macog_base.zip'
-    expected = [BASE_DIR / f'base_seg{_tag(l)}.gpkg' for l in SEGMENT_LENGTHS]
-    if not all(p.exists() for p in expected):
-        if not zip_path.exists():
-            st.error(f'Missing `{zip_path}` and base files are not unzipped. Add the zip.')
-            st.stop()
-        with zipfile.ZipFile(zip_path) as zf:
-            zf.extractall(BASE_DIR)
+    # Download any missing base files from the GitHub Release
+    import urllib.request
+    for tag, url in BASE_URLS.items():
+        dest = BASE_DIR / f'base_seg{tag}.gpkg'
+        if not dest.exists():
+            with st.spinner(f'First-run download: base_seg{tag}.gpkg (~30 MB)…'):
+                urllib.request.urlretrieve(url, dest)
 
-    # Patch fpa.py and import
+    # Patch fpa.py (must be committed to repo at data/fpa.py)
     fpa_src_path = DATA_DIR / 'fpa.py'
     if not fpa_src_path.exists():
-        st.error(f'Missing `{fpa_src_path}`.')
+        st.error(f'Missing `{fpa_src_path}` — upload fpa.py to the repo under data/.')
         st.stop()
     fpa_work = DATA_DIR / '_fpa_patched.py'
     src = fpa_src_path.read_text()
