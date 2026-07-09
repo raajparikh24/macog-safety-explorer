@@ -6,15 +6,15 @@ Quick reference for what each control does.
 
 | Filter | Effect | Speed |
 |---|---|---|
-| Segment length | Loads a whole new base file, HIN recomputes | 30 s – 2 min first time |
-| View (HIN / HRN) | Toggles which layer the map shows | Instant |
-| Blur size | HIN recomputes (sliding-window redistribution) | ~2–5 s |
-| Threshold scale | Reflags segments (no recount) | Instant |
-| Mode | Picks which mode's HIN to display | Instant |
-| HRN analysis | Picks which of 5 HRN splits to display | Instant |
+| Segment length | Loads a whole new base file, HIN recomputes |
+| View (HIN / HRN) | Toggles which layer the map shows |
+| Blur size | HIN recomputes (sliding-window redistribution) |
+| Threshold scale | Reflags segments (no recount) |
+| Mode | Picks which mode's HIN to display |
+| HRN analysis | Picks which of 5 HRN splits to display |
 | Counties | Filters map + tables | Instant |
-| Functional class | Filters map + tables | Instant |
-| Crash years | HIN recomputes on filtered crash subset | ~2–5 s |
+| Functional class | Filters map + tables |
+| Crash years | HIN recomputes on filtered crash subset |
 
 **Rule of thumb:** blur, segment length, and crash years actually re-run the math. Everything else just filters the display or reclassifies existing counts.
 
@@ -59,7 +59,7 @@ Filters both HIN and HRN by roadway class:
 Display filter only — no recompute.
 
 ### Crash years (slider)
-Restricts which crash records count toward HIN. Re-runs the sliding-window distribution on the year-filtered subset. **Does not affect HRN** — HRN tiers are baked at build time from the 2019–2023 model. To change HRN's year window you'd re-run BuildBase with a different filter.
+Restricts which crash records count toward HIN. Re-runs the sliding-window distribution on the year-filtered subset. **Does not affect HRN** — HRN tiers are baked at build time from the 2019–2023 model.
 
 ---
 
