@@ -12,7 +12,7 @@ Quick reference for what each control does.
 | Threshold scale | Reflags segments (no recount) |
 | Mode | Picks which mode's HIN to display |
 | HRN analysis | Picks which of 5 HRN splits to display |
-| Counties | Filters map + tables | Instant |
+| Counties | Filters map + tables |
 | Functional class | Filters map + tables |
 | Crash years | HIN recomputes on filtered crash subset |
 
