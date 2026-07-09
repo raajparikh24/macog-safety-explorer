@@ -63,16 +63,3 @@ Restricts which crash records count toward HIN. Re-runs the sliding-window distr
 
 ---
 
-## Common workflows
-
-**"How sensitive is the HIN to blur size?"**
-Fix everything else, sweep blur 0 → 5, watch HIN Miles column in the summary table.
-
-**"Which segments in St Joseph are Critical HRN?"**
-Set View = HRN, Counties = St Joseph, HRN analysis = `fsi_all_elk-stj_inc` (or `fsi_vru_reg_inc` for VRU-only).
-
-**"What if the consultant's thresholds are too strict?"**
-Threshold scale = 1.2 or 1.5 — see how many more segments would qualify.
-
-**"Compare 2021–2023 vs full window."**
-Slide the year range to 2021–2023, note the HIN counts; drag back to full range to compare.
