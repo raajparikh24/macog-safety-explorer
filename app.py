@@ -94,7 +94,7 @@ def _prepare_data_dir():
 _prepare_data_dir()
 
 # ----------------------- Cached loaders -----------------------
-@st.cache_resource(show_spinner='Loading base file…')
+@st.cache_resource(max_entries=1, show_spinner='Loading base file…')
 def load_base(length):
     """Load one segment length's gpkg + rebuild EventsCollections. Cached across reruns."""
     tag = _tag(length)
@@ -118,7 +118,7 @@ def load_base(length):
     return dict(segments=segments, segments_ec=segments_ec,
                 crashes_many_ec=crashes_many_ec, hrn=hrn)
 
-@st.cache_data(show_spinner='Computing HIN…')
+@st.cache_data(max_entries=4, show_spinner='Computing HIN…')
 def compute_hin(length, blur_size, threshold_scale, year_range):
     """Live HIN. Keyed on (length, blur, thr_scale, year_range) so repeats are instant."""
     base = load_base(length)
