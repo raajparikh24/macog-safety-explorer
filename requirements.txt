@@ -3,7 +3,7 @@ streamlit-folium
 folium
 geopandas
 shapely
-fiona
+pyogrio
 pandas
 numpy
 openpyxl
