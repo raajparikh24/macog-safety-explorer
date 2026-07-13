@@ -10,4 +10,4 @@ openpyxl
 scikit-learn
 mapclassify
 matplotlib
-linref
+linref<1.0
